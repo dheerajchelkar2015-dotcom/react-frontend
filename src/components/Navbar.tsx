@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import useAuth from "@/auth/store";
 import { NavLink, useNavigate } from "react-router";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { useCart } from "@/context/CartContext";
+import { useState } from "react";
 
 
 

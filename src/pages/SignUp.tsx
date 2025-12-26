@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent } from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -18,8 +18,8 @@ function SignUp() {
         password: "",
     });
 
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState(null);
+    //const [loading, setLoading] = useState<boolean>(false);
+    //const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

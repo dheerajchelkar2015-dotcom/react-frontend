@@ -47,7 +47,7 @@ const useAuth = create<AuthState>()(persist((set,get) => ({
             })
         }
     },
-    logout:async (silent = false)=>{
+    logout:async ()=>{
         try {
             set({
                 authLoading:true,
