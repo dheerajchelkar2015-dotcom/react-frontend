@@ -6,6 +6,9 @@ import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import useTheme from "@/lib/useTheme";
+import { ShoppingCart } from "lucide-react";
+import useCart from "@/store/useCart";
+
 
 
 function NavBar() {
@@ -18,6 +21,10 @@ function NavBar() {
   const { theme, toggleTheme } = useTheme();
 
   const [loggingOut, setLoggingOut] = useState(false);
+const totalItems = useCart(
+  (state) => state.items.reduce((sum, i) => sum + i.quantity, 0)
+);
+
 
   const handleLogout = () => {
     logout();
@@ -180,6 +187,36 @@ dark:border dark:border-white/10
               >
                 {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
               </Button>
+              <Button
+  size="icon"
+  onClick={() => navigate("/cart")}
+  className="
+    relative h-10 w-10 rounded-full
+    bg-[#eaf0ec] text-emerald-700
+    hover:bg-green-500
+    hover:text-white
+    shadow-[5px_5px_10px_#cfd8d3,-5px_-5px_10px_#ffffff]
+
+    dark:bg-[#0f172a] dark:text-emerald-400
+    dark:shadow-[5px_5px_10px_#020617,-5px_-5px_10px_#1f2933]
+  "
+>
+  <ShoppingCart size={18} />
+
+  {totalItems > 0 && (
+    <span
+      className="
+        absolute -top-1 -right-1
+        h-5 w-5 rounded-full
+        bg-red-500 text-white text-xs
+        flex items-center justify-center
+      "
+    >
+      {totalItems}
+    </span>
+  )}
+</Button>
+
 
             </>
           ) : (
@@ -352,6 +389,13 @@ dark:border dark:border-white/10
                 >
                   {theme === "light" ? "Dark Mode" : "Light Mode"}
                 </button>
+                <button
+  onClick={() => navigate("/cart")}
+  className="font-medium text-green-500"
+>
+  Cart ({totalItems})
+</button>
+
               </>
             ) : (
               <>

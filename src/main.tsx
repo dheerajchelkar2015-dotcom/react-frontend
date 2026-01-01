@@ -13,6 +13,7 @@ import UserProfile from './pages/users/UserProfile.tsx'
 import OAuthSuccess from './pages/OAuthSuccess.tsx'
 import OAuthFailure from './pages/OAuthFailure.tsx'
 import AddPlant from './pages/plants/AddPlant.tsx'
+import CartPage from './pages/plants/Cart/CartPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/signup' element={<SignUp />} />
         <Route path='/services' element={<Services />} />
         <Route path='/about' element={<About />} />
+        <Route path="/cart" element={<CartPage />} />
 
         <Route path='/dashboard' element={<UserLayout/>}>
           <Route index element={<UserHome/>} />

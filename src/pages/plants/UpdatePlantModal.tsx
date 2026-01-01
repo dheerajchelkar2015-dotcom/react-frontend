@@ -71,10 +71,10 @@ useEffect(() => {
       className="
       relative w-[420px] p-8 rounded-[28px]
       bg-[#eef3ef]
-      shadow-[10px_10px_24px_#cfd8d3,-10px_-10px_24px_#ffffff]
+      shadow-[5px_5px_12px_#cfd8d3,-5px_-5px_12px_#ffffff]
 
       dark:bg-[#0f172a]
-      dark:shadow-[10px_10px_24px_#020617,-10px_-10px_24px_#1f2933]
+      dark:shadow-[5px_5px_12px_#020617,-5px_-5px_12px_#1f2933]
     "
       >
         <button

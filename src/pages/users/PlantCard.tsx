@@ -5,6 +5,8 @@ import type { Plant } from "@/models/Plant";
 import { Pencil, ShoppingCart, Trash2 } from "lucide-react";
 import { useState } from "react";
 import UpdatePlantModal from "../plants/UpdatePlantModal";
+import useCart from "@/store/useCart";
+
 
 interface Props {
   plant: Plant;
@@ -14,13 +16,14 @@ export default function PlantCard({ plant, onDelete }: Props) {
 
 
   const [openEdit, setOpenEdit] = useState(false);
+const addToCart = useCart((state) => state.addToCart);
 
   
   return (
     <Card
       className="
         group flex flex-col
-        w-[240px] h-[360px] rounded-[24px]
+        h-auto rounded-[12px]
         bg-[#eaf0ec]
         shadow-[6px_6px_14px_#cfd8d3,-6px_-6px_14px_#ffffff]
         hover:shadow-[inset_5px_5px_10px_#cfd8d3,inset_-5px_-5px_10px_#ffffff]
@@ -32,7 +35,7 @@ export default function PlantCard({ plant, onDelete }: Props) {
       "
     >
       {/* Image */}
-      <div className="relative h-[160px] overflow-hidden rounded-t-[24px]">
+      <div className="relative h-[160px] overflow-hidden">
         <img
           src={`http://localhost:8083/${plant.imageUrl}`}
           alt={plant.name}
@@ -89,9 +92,10 @@ export default function PlantCard({ plant, onDelete }: Props) {
         </span>
 
         {/* Button pinned to bottom */}
-        <Button
-          size="sm"
-          className="
+<Button
+  size="sm"
+  onClick={() => addToCart(plant)}
+  className="
             mt-auto w-full rounded-xl
             bg-[#eaf0ec] text-gray-800
             shadow-[5px_5px_10px_#cfd8d3,-5px_-5px_10px_#ffffff]
@@ -105,10 +109,11 @@ export default function PlantCard({ plant, onDelete }: Props) {
         
             transition-all
           "
-        >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          Add To Cart
-        </Button>
+>
+  <ShoppingCart className="mr-2 h-4 w-4" />
+  Add To Cart
+</Button>
+
 
                 {/* Update Plant */}
         <Button

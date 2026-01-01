@@ -32,15 +32,18 @@ export default function PlantRow({ plants, onDelete }: Props) {
 
   return (
     <>
+      {/* 🌱 Grid Layout */}
       <div
-        className="
-          flex gap-6
-          overflow-x-auto
-          pb-6
-          px-6
-          [&>*]:shrink-0
-          scrollbar-hide
-        "
+       className="
+    grid px-6 pb-6
+    gap-x-6 gap-y-6
+    grid-cols-1
+    sm:grid-cols-2
+    lg:grid-cols-3
+    xl:grid-cols-5
+    auto-rows-min
+    items-start
+  "
       >
         {plants.map((plant) => (
           <PlantCard
@@ -51,10 +54,11 @@ export default function PlantRow({ plants, onDelete }: Props) {
         ))}
       </div>
 
-      {/* Confirmation Modal */}
+      {/* 🔥 Confirmation Modal */}
       <ConfirmModal
         open={openModal}
-        message={`Are you sure you want to delete ${selectedPlant?.name}?`}
+        title="Delete Plant"
+        message={`Are you sure you want to delete "${selectedPlant?.name}"?`}
         onConfirm={handleConfirmDelete}
         onCancel={handleCancel}
       />

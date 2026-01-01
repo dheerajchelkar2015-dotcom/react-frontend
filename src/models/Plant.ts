@@ -4,7 +4,7 @@ export interface Plant {
   tag: string;
   imageUrl?: string;
   category?: string;
-  price?: number;      // ✅ number
+  price: number;      // ✅ number
   quantity?: number;   // ✅ number
 }
 

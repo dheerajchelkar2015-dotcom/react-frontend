@@ -5,7 +5,7 @@ import { NavLink } from "react-router";
 
 export default function PortfolioHome() {
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-800">
 
       {/* Neumorphic overlay */}
       <div className="min-h-screen bg-background/70 backdrop-blur-sm">
