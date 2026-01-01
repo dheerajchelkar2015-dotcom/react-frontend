@@ -1,4 +1,3 @@
-
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
@@ -11,12 +10,12 @@ import RootLayout from './pages/RootLayout.tsx'
 import UserLayout from './pages/users/UserLayout.tsx'
 import UserHome from './pages/users/UserHome.tsx'
 import UserProfile from './pages/users/UserProfile.tsx'
-import { CartProvider } from './context/CartContext.tsx'
-import Cart from './pages/users/Cart.tsx'
+import OAuthSuccess from './pages/OAuthSuccess.tsx'
+import OAuthFailure from './pages/OAuthFailure.tsx'
+import AddPlant from './pages/plants/AddPlant.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-  <CartProvider>
     <Routes>
       <Route path='/' element={<RootLayout/>}>
         <Route index element={<App />} />
@@ -24,13 +23,16 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/signup' element={<SignUp />} />
         <Route path='/services' element={<Services />} />
         <Route path='/about' element={<About />} />
+
         <Route path='/dashboard' element={<UserLayout/>}>
           <Route index element={<UserHome/>} />
           <Route path='profile' element={<UserProfile/>}/>
-          <Route path="cart" element={<Cart />} />
+          <Route path="add-plant" element={<AddPlant />} />
         </Route>
+
+        <Route path='oauth/success' element={<OAuthSuccess/>}/>
+        <Route path='oauth/failure' element={<OAuthFailure/>}/>
       </Route>
     </Routes>
-    </CartProvider>
   </BrowserRouter>
 )

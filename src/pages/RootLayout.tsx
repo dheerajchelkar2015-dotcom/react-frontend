@@ -6,10 +6,12 @@ import Footer from "@/components/home/Footer";
 
 function RootLayout(){
     return (
-        <div>
+        <div className="min-h-screen flex flex-col bg-[#eaf0ec] dark:bg-[#020617]">
             <Toaster/>
             <NavBar/>
-            <Outlet/>
+             <main className="flex-1 flex flex-col">
+        <Outlet />
+      </main>
             <Footer/>
         </div>
     )

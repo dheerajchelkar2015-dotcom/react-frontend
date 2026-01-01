@@ -1,3 +1,5 @@
+import useAuth from "@/auth/store";
+import { refreshToken } from "@/services/AuthService";
 import axios from "axios";
 
 const apiClient = axios.create({
@@ -8,5 +10,83 @@ const apiClient = axios.create({
     withCredentials:true,
     timeout:10000
 });
+
+// every request: before
+apiClient.interceptors.request.use((config) => {
+    const accessToken = useAuth.getState().accessToken;
+    if (accessToken) {
+        config.headers.Authorization=`Bearer ${accessToken}`;
+    }
+
+    return config;
+})
+
+let isRefreshing = false;
+let pending:any[] = [];
+
+function queueRequest(cb:any){
+    pending.push(cb);
+}
+
+function resolveQueue(newToken:string){
+    pending.forEach(cb=> cb(newToken));
+    pending = [];
+}
+
+// response interceptors
+apiClient.interceptors.response.use(
+    response=>response,
+    async (error) => {
+        console.log(error);
+        const is401 = error.response.status === 401;
+        const original = error.config;
+        console.log(original);
+        
+        console.log("original._retry", original._retry);
+        
+        if (!is401|| original._retry) {
+            return Promise.reject(error);
+        }
+
+        original._retry=true;
+
+        if (isRefreshing) {
+            console.log("already refreshing....");
+            
+            return new Promise((resolve,reject)=>{
+                queueRequest((newToken:string)=>{
+                    if (!newToken) {
+                        return reject();
+                    }
+                    original.headers.Authorization=`Bearer ${newToken}`;
+                    resolve(apiClient(original));
+                });
+            });
+        }
+
+    isRefreshing=true;
+
+    try {
+        console.log("start refreshing...");
+        
+        const loginResponse = await refreshToken();
+        const newToken = loginResponse.accessToken;
+        if (!newToken) {
+            throw new Error("no access token recived");
+        }
+        useAuth.getState().changeLocalLoginData(loginResponse.accessToken,loginResponse.user,true);
+        resolveQueue(newToken);
+        original.headers.Authorization = `Bearer ${newToken}`;
+        return apiClient(original);
+    } catch (error) {
+        resolveQueue('null');
+        useAuth.getState().logout();
+        return Promise.reject(error);
+    }finally{
+        isRefreshing=false;
+    }
+
+    }
+);
 
 export default apiClient;
