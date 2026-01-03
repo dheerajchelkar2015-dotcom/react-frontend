@@ -1,13 +1,13 @@
 import HeroCarousel from "@/pages/users/Carouesol/HeroCareouesol";
-import usePlantStore from "@/store/PlantStore";
+import useProductStore from "@/store/ProductStore";
 import { useEffect } from "react";
-import PlantRow from "./PlantRow";
+import ProductRow from "./ProductRow";
 
 export default function Dashboard() {
-  const { plants, fetchPlants, removePlant } = usePlantStore();
+  const { products, fetchProducts, removeProduct } = useProductStore();
 
   useEffect(() => {
-    fetchPlants();
+    fetchProducts();
   }, []);
 
   return (
@@ -16,7 +16,7 @@ export default function Dashboard() {
       <HeroCarousel />
 
       {/* Cards Row */}
-      <PlantRow plants={plants} onDelete={removePlant} />
+      <ProductRow products={products} onDelete={removeProduct} />
     </div>
   );
 }

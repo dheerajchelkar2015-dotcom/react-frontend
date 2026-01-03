@@ -12,8 +12,8 @@ import UserHome from './pages/users/UserHome.tsx'
 import UserProfile from './pages/users/UserProfile.tsx'
 import OAuthSuccess from './pages/OAuthSuccess.tsx'
 import OAuthFailure from './pages/OAuthFailure.tsx'
-import AddPlant from './pages/plants/AddPlant.tsx'
-import CartPage from './pages/plants/Cart/CartPage.tsx'
+import CartPage from './pages/products/Cart/CartPage.tsx'
+import AddProduct from './pages/products/AddProduct.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -24,12 +24,13 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/signup' element={<SignUp />} />
         <Route path='/services' element={<Services />} />
         <Route path='/about' element={<About />} />
-        <Route path="/cart" element={<CartPage />} />
+        
 
         <Route path='/dashboard' element={<UserLayout/>}>
           <Route index element={<UserHome/>} />
           <Route path='profile' element={<UserProfile/>}/>
-          <Route path="add-plant" element={<AddPlant />} />
+          <Route path="add-product" element={<AddProduct />} />
+          <Route path="cart" element={<CartPage />} />
         </Route>
 
         <Route path='oauth/success' element={<OAuthSuccess/>}/>

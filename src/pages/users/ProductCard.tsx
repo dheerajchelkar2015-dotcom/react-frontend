@@ -1,18 +1,18 @@
-// src/components/PlantCard.tsx
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import type { Plant } from "@/models/Plant";
+import type { Product } from "@/models/Product";
 import { Pencil, ShoppingCart, Trash2 } from "lucide-react";
 import { useState } from "react";
-import UpdatePlantModal from "../plants/UpdatePlantModal";
+
 import useCart from "@/store/useCart";
+import UpdateProductModal from "../products/UpdatePlantModal";
 
 
 interface Props {
-  plant: Plant;
+  product: Product;
   onDelete: () => void;
 }
-export default function PlantCard({ plant, onDelete }: Props) {
+export default function ProductCard({ product, onDelete }: Props) {
 
 
   const [openEdit, setOpenEdit] = useState(false);
@@ -37,8 +37,8 @@ const addToCart = useCart((state) => state.addToCart);
       {/* Image */}
       <div className="relative h-[160px] overflow-hidden">
         <img
-          src={`http://localhost:8083/${plant.imageUrl}`}
-          alt={plant.name}
+          src={`http://localhost:8083/${product.imageUrl}`}
+          alt={product.name}
           className="
             h-full w-full object-cover
             transition-transform duration-500
@@ -60,7 +60,7 @@ const addToCart = useCart((state) => state.addToCart);
             dark:shadow-[4px_4px_8px_#020617,-4px_-4px_8px_#1f2933]
           "
         >
-          ₹ {plant.price}
+          ₹ {product.price}
         </div>
       </div>
 
@@ -68,10 +68,10 @@ const addToCart = useCart((state) => state.addToCart);
       <div className="flex flex-col flex-1 p-4 space-y-3">
         <div>
           <h3 className="text-sm font-semibold text-gray-800 dark:text-white line-clamp-1">
-            {plant.name}
+            {product.name}
           </h3>
           <p className="text-xs text-gray-500 line-clamp-1">
-            {plant.tag}
+            {product.tag}
           </p>
         </div>
 
@@ -88,13 +88,13 @@ const addToCart = useCart((state) => state.addToCart);
             dark:shadow-[inset_3px_3px_6px_#e5e7eb,inset_-3px_-3px_6px_#ffffff]
           "
         >
-          {plant.category}
+          {product.category}
         </span>
 
         {/* Button pinned to bottom */}
 <Button
   size="sm"
-  onClick={() => addToCart(plant)}
+  onClick={() => addToCart(product)}
   className="
             mt-auto w-full rounded-xl
             bg-[#eaf0ec] text-gray-800
@@ -115,7 +115,7 @@ const addToCart = useCart((state) => state.addToCart);
 </Button>
 
 
-                {/* Update Plant */}
+                {/* Update Product */}
         <Button
           size="sm"
           onClick={() => setOpenEdit(true)}
@@ -135,12 +135,12 @@ const addToCart = useCart((state) => state.addToCart);
           "
         >
           <Pencil className="mr-2 h-4 w-4" />
-          Update Plant
+          Update Product
         </Button>
 
         {openEdit && (
-  <UpdatePlantModal
-    plant={plant}
+  <UpdateProductModal
+    product={product}
     onClose={() => setOpenEdit(false)}
   />
 )}
@@ -169,7 +169,7 @@ const addToCart = useCart((state) => state.addToCart);
 "
         >
           <Trash2 className="mr-2 h-4 w-4" />
-          Delete Plant
+          Delete Product
         </Button> 
 
         

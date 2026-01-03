@@ -1,12 +1,11 @@
-// src/components/AddPlantDialog.tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import usePlantStore from "@/store/PlantStore";
+import useProductStore from "@/store/ProductStore";
 import { ImagePlus, X } from "lucide-react";
 
-export default function AddPlantDialog() {
-  const { addPlant } = usePlantStore();
+export default function AddProduct() {
+  const { addProduct } = useProductStore();
 
   const [form, setForm] = useState({
     name: "",
@@ -28,7 +27,7 @@ export default function AddPlantDialog() {
 
   const submit = async () => {
     if (!image) return;
-    await addPlant(form, image);
+    await addProduct(form, image);
     setForm({ name: "", tag: "", category: "", price: "", quantity: "" });
     setImage(null);
     setPreview(null);
@@ -47,12 +46,12 @@ export default function AddPlantDialog() {
     >
       {/* Title */}
       <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-        Add New Plant 🌱
+        Add New Product 🌱
       </h2>
 
       {/* Inputs */}
       {[
-        { key: "name", label: "Plant Name" },
+        { key: "name", label: "Product Name" },
         { key: "tag", label: "Tag" },
         { key: "category", label: "Category" },
         { key: "price", label: "Price" },
@@ -164,7 +163,7 @@ export default function AddPlantDialog() {
           transition-all
         "
       >
-        Add Plant
+        Add Product
       </Button>
     </div>
   );

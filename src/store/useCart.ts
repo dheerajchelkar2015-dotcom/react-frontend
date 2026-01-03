@@ -1,13 +1,13 @@
 import { create } from "zustand";
-import type { Plant } from "@/models/Plant";
+import type { Product } from "@/models/Product";
 
-interface CartItem extends Plant {
+interface CartItem extends Product {
   quantity: number;
 }
 
 interface CartState {
   items: CartItem[];
-  addToCart: (plant: Plant) => void;
+  addToCart: (plant: Product) => void;
   removeFromCart: (id: number) => void;
   increaseQty: (id: number) => void;
   decreaseQty: (id: number) => void;

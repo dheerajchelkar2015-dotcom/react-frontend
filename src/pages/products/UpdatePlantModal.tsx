@@ -1,32 +1,32 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import usePlantStore from "@/store/PlantStore";
-import type { Plant, PlantForm } from "@/models/Plant";
+import useProductStore from "@/store/ProductStore";
+import type { Product, ProductForm } from "@/models/Product";
 import { Input } from "@/components/ui/input";
 import { ImagePlus, X } from "lucide-react";
 import { useEffect } from "react";
 
 
 interface Props {
-  plant: Plant;
+  product: Product;
   onClose: () => void;
 }
 
-export default function UpdatePlantModal({ plant, onClose }: Props) {
-  const { updatePlant } = usePlantStore();
+export default function UpdateProductModal({ product, onClose }: Props) {
+  const { updateProduct } = useProductStore();
 
-const [form, setForm] = useState<PlantForm>({
-  name: plant.name,
-  tag: plant.tag,
-  category: plant.category ?? "",
-  price: plant.price !== undefined ? String(plant.price) : "",
-  quantity: plant.quantity !== undefined ? String(plant.quantity) : "",
+const [form, setForm] = useState<ProductForm>({
+  name: product.name,
+  tag: product.tag,
+  category: product.category ?? "",
+  price: product.price !== undefined ? String(product.price) : "",
+  quantity: product.quantity !== undefined ? String(product.quantity) : "",
 });
 
 
 useEffect(() => {
-  console.log("PLANT DATA 👉", plant);
-}, [plant]);
+  console.log("PRODUCT DATA 👉", product);
+}, [product]);
 
 
  const [image, setImage] = useState<File | undefined>(undefined);
@@ -40,8 +40,8 @@ const handleFile = (file?: File) => {
 };
 
 const handleSubmit = async () => {
-  await updatePlant(
-    plant.id,
+  await updateProduct(
+    product.id,
     {
       name: form.name,
       tag: form.tag,
@@ -59,10 +59,10 @@ const handleSubmit = async () => {
 
 
 useEffect(() => {
-  if (plant.imageUrl) {
-    setPreview(`http://localhost:8083/${plant.imageUrl}?t=${Date.now()}`);
+  if (product.imageUrl) {
+    setPreview(`http://localhost:8083/${product.imageUrl}?t=${Date.now()}`);
   }
-}, [plant]);
+}, [product]);
 
 
   return (
@@ -97,14 +97,14 @@ useEffect(() => {
   <X className="h-4 w-4 text-gray-600 dark:text-gray-300" />
 </button>
         <h2 className="text-lg font-semibold mb-6">
-          Update Plant 🌱
+          Update Product 🌱
         </h2>
 
         {/* Inputs */}
 
         <div className="space-y-4">
                {[
-  { key: "name", label: "Plant Name" },
+  { key: "name", label: "Product Name" },
   { key: "tag", label: "Tag" },
   { key: "category", label: "Category" },
   { key: "price", label: "Price" },
@@ -113,7 +113,7 @@ useEffect(() => {
   <Input
     key={key}
     placeholder={label}
-    value={form[key as keyof PlantForm]}
+    value={form[key as keyof ProductForm]}
     onChange={(e) =>
       setForm({ ...form, [key]: e.target.value })
     }

@@ -21,9 +21,9 @@ function NavBar() {
   const { theme, toggleTheme } = useTheme();
 
   const [loggingOut, setLoggingOut] = useState(false);
-const totalItems = useCart(
-  (state) => state.items.reduce((sum, i) => sum + i.quantity, 0)
-);
+  const totalItems = useCart(
+    (state) => state.items.reduce((sum, i) => sum + i.quantity, 0)
+  );
 
 
   const handleLogout = () => {
@@ -101,7 +101,7 @@ dark:border dark:border-white/10
                 Dashboard
               </Button>
 
-              {/* Add Plants */}
+              {/* Add Products */}
               <Button
                 size="sm"
                 className="
@@ -121,9 +121,9 @@ dark:border dark:border-white/10
 
   transition-all
 "
-                onClick={() => navigate("/dashboard/add-plant")}
+                onClick={() => navigate("/dashboard/add-product")}
               >
-                Add Plants
+                Add Products
               </Button>
 
               {/* Profile */}
@@ -188,9 +188,9 @@ dark:border dark:border-white/10
                 {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
               </Button>
               <Button
-  size="icon"
-  onClick={() => navigate("/cart")}
-  className="
+                size="icon"
+                onClick={() => navigate("/dashboard/cart")}
+                className="
     relative h-10 w-10 rounded-full
     bg-[#eaf0ec] text-emerald-700
     hover:bg-green-500
@@ -200,22 +200,22 @@ dark:border dark:border-white/10
     dark:bg-[#0f172a] dark:text-emerald-400
     dark:shadow-[5px_5px_10px_#020617,-5px_-5px_10px_#1f2933]
   "
->
-  <ShoppingCart size={18} />
+              >
+                <ShoppingCart size={18} />
 
-  {totalItems > 0 && (
-    <span
-      className="
+                {totalItems > 0 && (
+                  <span
+                    className="
         absolute -top-1 -right-1
         h-5 w-5 rounded-full
         bg-red-500 text-white text-xs
         flex items-center justify-center
       "
-    >
-      {totalItems}
-    </span>
-  )}
-</Button>
+                  >
+                    {totalItems}
+                  </span>
+                )}
+              </Button>
 
 
             </>
@@ -390,11 +390,11 @@ dark:border dark:border-white/10
                   {theme === "light" ? "Dark Mode" : "Light Mode"}
                 </button>
                 <button
-  onClick={() => navigate("/cart")}
-  className="font-medium text-green-500"
->
-  Cart ({totalItems})
-</button>
+                  onClick={() => navigate("/dashboard/cart")}
+                  className="font-medium text-green-500"
+                >
+                  Cart ({totalItems})
+                </button>
 
               </>
             ) : (
