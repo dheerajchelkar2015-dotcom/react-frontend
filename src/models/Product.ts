@@ -3,19 +3,19 @@ export interface Product {
   name: string;
   tag: string;
   imageUrl?: string;
-  category: string;
-  price: number;      
-  quantity?: number;  
-}
+  price: number;
+  quantity?: number;
 
+  category: {
+    id: number;
+    name: string;
+  };
+}
 
 export interface ProductForm {
   name: string;
   tag: string;
-  category: string;
-  imageUrl?: string;
-  price: string;     
-  quantity: string;  
+  categoryId: number;
+  price: string;
+  quantity: string;
 }
-
-

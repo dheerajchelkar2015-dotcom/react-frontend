@@ -88,7 +88,7 @@ const addToCart = useCart((state) => state.addToCart);
             dark:shadow-[inset_3px_3px_6px_#e5e7eb,inset_-3px_-3px_6px_#ffffff]
           "
         >
-          {product.category}
+          {product.category.name}
         </span>
 
         {/* Button pinned to bottom */}

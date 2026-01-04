@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useProductStore from "@/store/ProductStore";
 import { ImagePlus, X } from "lucide-react";
+import useCategoryStore from "@/store/categoryStore";
+import { useEffect } from "react";
+
 
 export default function AddProduct() {
   const { addProduct } = useProductStore();
@@ -10,7 +13,8 @@ export default function AddProduct() {
   const [form, setForm] = useState({
     name: "",
     tag: "",
-    category: "",
+categoryId: "",
+
     price: "",
     quantity: "",
   });
@@ -18,6 +22,12 @@ export default function AddProduct() {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
+  const { categories, fetchCategories } = useCategoryStore();
+
+useEffect(() => {
+  fetchCategories();
+}, [fetchCategories]);
+
 
   const handleFile = (file: File | null) => {
     if (!file) return;
@@ -26,12 +36,27 @@ export default function AddProduct() {
   };
 
   const submit = async () => {
-    if (!image) return;
-    await addProduct(form, image);
-    setForm({ name: "", tag: "", category: "", price: "", quantity: "" });
-    setImage(null);
-    setPreview(null);
-  };
+  if (!image || !form.categoryId) return;
+
+  await addProduct(
+    {
+      ...form,
+      categoryId: Number(form.categoryId),
+    },
+    image
+  );
+
+  setForm({
+    name: "",
+    tag: "",
+    categoryId: "",
+    price: "",
+    quantity: "",
+  });
+  setImage(null);
+  setPreview(null);
+};
+
 
   return (
     <div
@@ -53,7 +78,6 @@ export default function AddProduct() {
       {[
         { key: "name", label: "Product Name" },
         { key: "tag", label: "Tag" },
-        { key: "category", label: "Category" },
         { key: "price", label: "Price" },
         { key: "quantity", label: "Quantity" },
       ].map(({ key, label }) => (
@@ -74,6 +98,31 @@ export default function AddProduct() {
           "
         />
       ))}
+
+      <select
+  value={form.categoryId}
+  onChange={(e) =>
+    setForm({ ...form, categoryId: e.target.value })
+  }
+  className="
+    rounded-xl px-4 py-3 w-full
+    bg-[#eaf0ec] text-gray-700
+    shadow-[inset_4px_4px_8px_#cfd8d3,inset_-4px_-4px_8px_#ffffff]
+    focus:ring-2 focus:ring-emerald-400
+
+    dark:bg-[#0f172a] dark:text-gray-200
+    dark:shadow-[inset_4px_4px_8px_#020617,inset_-4px_-4px_8px_#1f2933]
+    dark:focus:ring-emerald-500
+  "
+>
+  <option value="">Select Category</option>
+  {categories.map((c) => (
+    <option key={c.id} value={c.id}>
+      {c.name}
+    </option>
+  ))}
+</select>
+
 
       {/* Drag & Drop Upload */}
       <div
