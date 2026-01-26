@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer
   className="
-    w-full backdrop-blur mt-10
+    w-full backdrop-blur
     bg-[#eaf0ec]/90
     shadow-[6px_6px_12px_#cfd8d3,-6px_-6px_12px_#ffffff]
 

@@ -15,6 +15,7 @@ import OAuthFailure from './pages/OAuthFailure.tsx'
 import CartPage from './pages/products/Cart/CartPage.tsx'
 import AddProduct from './pages/products/AddProduct.tsx'
 import CategoryPage from './pages/categories/CategoryPage.tsx'
+import Choice from './pages/Choice/Choice.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='profile' element={<UserProfile/>}/>
           <Route path="add-product" element={<AddProduct />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path="add" element={<Choice />} />
           <Route path="add-categories" element={<CategoryPage />} />
         </Route>
 

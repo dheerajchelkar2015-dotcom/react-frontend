@@ -59,9 +59,10 @@ useEffect(() => {
 
 
   return (
-    <div
+    <div className="p-5">
+<div
       className="
-        max-w-xl mx-auto space-y-6 p-8 rounded-3xl
+        max-w-xl mx-auto space-y-6 p-5 rounded-3xl
         bg-[#eaf0ec]
         shadow-[10px_10px_20px_#cfd8d3,-10px_-10px_20px_#ffffff]
 
@@ -106,13 +107,13 @@ useEffect(() => {
   }
   className="
     rounded-xl px-4 py-3 w-full
-    bg-[#eaf0ec] text-gray-700
-    shadow-[inset_4px_4px_8px_#cfd8d3,inset_-4px_-4px_8px_#ffffff]
-    focus:ring-2 focus:ring-emerald-400
+            bg-[#eaf0ec] text-gray-700
+            shadow-[inset_4px_4px_8px_#cfd8d3,inset_-4px_-4px_8px_#ffffff]
+            
 
-    dark:bg-[#0f172a] dark:text-gray-200
-    dark:shadow-[inset_4px_4px_8px_#020617,inset_-4px_-4px_8px_#1f2933]
-    dark:focus:ring-emerald-500
+            dark:bg-[#0f172a] dark:text-gray-200
+            dark:shadow-[inset_4px_4px_8px_#020617,inset_-4px_-4px_8px_#1f2933]
+           
   "
 >
   <option value="">Select Category</option>
@@ -215,5 +216,7 @@ useEffect(() => {
         Add Product
       </Button>
     </div>
+    </div>
+    
   );
 }

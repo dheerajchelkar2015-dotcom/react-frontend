@@ -41,7 +41,7 @@ function NavBar() {
   return (
     <nav
       className="
-    sticky top-0 z-50 w-full mb-10 p-2
+    sticky top-0 z-50 w-full p-2
     bg-[#eaf0ec]
     shadow-[6px_6px_12px_#cfd8d3,-6px_-6px_12px_#ffffff]
 
@@ -102,7 +102,7 @@ dark:border dark:border-white/10
               </Button>
 
               {/* Add Products */}
-              <Button
+              {/* <Button
                 size="sm"
                 className="
   rounded-full
@@ -124,10 +124,10 @@ dark:border dark:border-white/10
                 onClick={() => navigate("/dashboard/add-product")}
               >
                 Add Products
-              </Button>
+              </Button> */}
 
                             {/* Add Products */}
-              <Button
+              {/* <Button
                 size="sm"
                 className="
   rounded-full
@@ -149,6 +149,31 @@ dark:border dark:border-white/10
                 onClick={() => navigate("/dashboard/add-categories")}
               >
                 Add Categories
+              </Button> */}
+
+              {/* Add */}
+              <Button
+                size="sm"
+                className="
+  rounded-full
+  bg-[#eaf0ec] text-emerald-700
+  shadow-[5px_5px_10px_#cfd8d3,-5px_-5px_10px_#ffffff]
+  hover:bg-[#eaf0ec]
+  hover:text-emerald-700
+  hover:shadow-[inset_4px_4px_8px_#cfd8d3,inset_-4px_-4px_8px_#ffffff]
+
+  dark:bg-[#0f172a] dark:text-emerald-400
+  dark:shadow-[5px_5px_10px_#020617,-5px_-5px_10px_#1f2933]
+  dark:hover:bg-[#0f172a]
+  dark:hover:text-white
+  dark:hover:shadow-[inset_4px_4px_8px_#020617,inset_-4px_-4px_8px_#1f2933]
+dark:border dark:border-white/10
+
+  transition-all
+"
+                onClick={() => navigate("/dashboard/add")}
+              >
+                Add
               </Button>
 
               {/* Profile */}
@@ -390,6 +415,14 @@ dark:border dark:border-white/10
                 >
                   Dashboard
                 </NavLink>
+
+                 <NavLink
+                    to={"/dashboard/add"}
+                    onClick={() => setOpen(false)}
+                    className="font-medium text-green-500"
+              >
+                Add
+              </NavLink>
 
                 <NavLink
                   to="/dashboard/profile"

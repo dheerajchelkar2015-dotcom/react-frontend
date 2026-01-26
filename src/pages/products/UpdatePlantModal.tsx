@@ -143,7 +143,7 @@ export default function UpdateProductModal({ product, onClose }: Props) {
             setForm({ ...form, categoryId: Number(e.target.value) })
           }
           className="
-    rounded-xl px-4 py-3 mt-5
+    rounded-xl px-4 py-3 mt-5 w-full
     bg-[#eaf0ec] text-gray-700
       shadow-[inset_4px_4px_8px_#cfd8d3,inset_-4px_-4px_8px_#ffffff]
       focus:ring-2 focus:ring-emerald-400
