@@ -448,7 +448,7 @@ dark:border dark:border-white/10
                   {theme === "light" ? "Dark Mode" : "Light Mode"}
                 </button>
                 <button
-                  onClick={() => navigate("/dashboard/cart")}
+                  onClick={() => {navigate("/dashboard/cart");setOpen(false);}}
                   className="font-medium text-green-500"
                 >
                   Cart ({totalItems})
