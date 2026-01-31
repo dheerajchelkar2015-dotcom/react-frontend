@@ -65,11 +65,18 @@ export default function UpdateProductModal({ product, onClose }: Props) {
 
 
 
+  // useEffect(() => {
+  //   if (product.imageUrl) {
+  //     setPreview(`http://localhost:8083/${product.imageUrl}?t=${Date.now()}`);
+  //   }
+  // }, [product]);
+
   useEffect(() => {
-    if (product.imageUrl) {
-      setPreview(`http://localhost:8083/${product.imageUrl}?t=${Date.now()}`);
-    }
+  if (product.imageUrl) {
+    setPreview(`${product.imageUrl}?t=${Date.now()}`);
+  }
   }, [product]);
+
 
 
   return (

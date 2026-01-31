@@ -36,7 +36,7 @@ const addToCart = useCart((state) => state.addToCart);
     >
       {/* Image */}
       <div className="relative h-[160px] overflow-hidden">
-        <img
+        {/* <img
           src={`http://localhost:8083/${product.imageUrl}`}
           alt={product.name}
           className="
@@ -44,7 +44,19 @@ const addToCart = useCart((state) => state.addToCart);
             transition-transform duration-500
             group-hover:scale-105
           "
+        /> */}
+
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="
+            h-full w-full object-cover
+            transition-transform duration-500
+            group-hover:scale-105
+          "
         />
+
+        src={product.imageUrl}
 
         {/* Price */}
         <div

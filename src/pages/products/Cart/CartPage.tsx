@@ -44,8 +44,14 @@ export default function CartPage() {
         >
           {/* Left */}
           <div className="flex items-center gap-4">
-            <img
+            {/* <img
               src={`http://localhost:8083/${item.imageUrl}`}
+              alt={item.name}
+              className="h-16 w-16 rounded-lg object-cover"
+            /> */}
+
+            <img
+              src={item.imageUrl}
               alt={item.name}
               className="h-16 w-16 rounded-lg object-cover"
             />
